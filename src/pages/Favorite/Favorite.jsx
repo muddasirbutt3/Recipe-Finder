@@ -1,29 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Favorite.module.css";
 import Card from "../../components/Card/Card";
 import axios from "axios";
+import Loader from "../../components/Loader/Loader";
+import ServerError from "../../components/ServerError/ServerError";
+import { ErrorContext } from "../../context/ErrorContext";
 const apiKey = import.meta.env.VITE_SPOONACULAR_KEY;
 const BaseURL = import.meta.env.VITE_SPOONACULAR_BASE_URL;
 
-function Favorite({ favRecipe, data }) {
+function Favorite({ favRecipe }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { error, setError } = useContext(ErrorContext);
   useEffect(() => {
     let ids = favRecipe.join(",");
-    // axios
-    //   .get(`${BaseURL}informationBulk?ids=${ids}&apiKey=${apiKey}`)
-    //   .then((res) => {
-    //     // setLoading(false);
-    //     // setData(res.data.results);
-    //     console.log(res);
-    //     localStorage.setItem('favitems',JSON.stringify(res.data))
-    //   });
-    console.log(ids);
-
-    // setTimeout(() => {
-    // setLoading(false);
-    // setData(res.data.results);
-    // setData(response.data);
-    // }, 2000);
+    axios
+      .get(`${BaseURL}informationBulk?ids=${ids}&apiKey=${apiKey}`)
+      .then((res) => {
+        setData(res.data.results);
+        setLoading(false);
+      })
+    .catch(err => {
+      setError(true)
+    })
   }, []);
+  if (loading) return <Loader />;
+  if (error) return <ServerError />;
   if (favRecipe.length === 0) {
     return (
       <div className={styles.empty}>
@@ -35,9 +37,9 @@ function Favorite({ favRecipe, data }) {
   return (
     <div className={styles.fav}>
       <div className={styles.cards}>
-        {data.map((recipe) =>
-          <Card info={recipe} key={recipe.id}  />
-        )}
+        {data.map((recipe) => (
+          <Card info={recipe} key={recipe.id} />
+        ))}
       </div>
     </div>
   );

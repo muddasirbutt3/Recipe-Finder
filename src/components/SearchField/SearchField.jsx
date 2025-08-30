@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./SearchFeild.module.css";
 import axios from "axios";
+import { DataContext} from "../../context/DataContext";
 const apiKey = import.meta.env.VITE_SPOONACULAR_KEY;
 const BaseURL = import.meta.env.VITE_SPOONACULAR_BASE_URL;
 
-function SearchField({ setData }) {
-  const [search, setSearch] = useState("");
+function SearchField({ }) {
+  const {setData} = useContext(DataContext)
+  const [search,setSearch] = useState('')
   function searchByName() {
-    // axios.get(`${BaseURL}query=${search}&number=6&addRecipeInformation=true&apiKey=${apiKey}`)
-    axios.get('https://api.spoonacular.com/recipes/716429/information?apiKey=5d8c563377bb4ef2b19e876606f1f21a')
+    axios.get(`${BaseURL}complexSearch?query=${search}&number=8&addRecipeInformation=true&apiKey=${apiKey}`)
     .then((res) => {
-      // setLoading(false)
-      // setData(res.data.results)
-      console.log(res)
+        setData(res.data.results)
+        setLoading(false)
     })
     setSearch('')
   }

@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./About.module.css";
+import ServerError from "../../components/ServerError/ServerError";
+import { ErrorContext } from "../../context/ErrorContext";
+import Loader from "../../components/Loader/Loader";
 
 const About = () => {
+  const {error} = useContext(ErrorContext)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    },2000)
+  },[])
+  if(error) return <ServerError/>
+  if (loading) return <Loader />;
   return (
     <section className={styles.about}>
       <div className={styles.container}>

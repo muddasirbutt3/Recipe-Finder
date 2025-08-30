@@ -55,8 +55,8 @@
   margin-bottom: 20px;
   line-height: 1.6;
 }
-.summary a{
-    color: black;
+.summary a {
+  color: black;
 }
 
 .instructions {
@@ -70,17 +70,79 @@
   line-height: 1.8;
   margin-bottom: 20px;
 }
-.diets{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
+
+.diets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
 }
-.diets div{
-    padding: 4px 8px;
-    border-radius: 50px;
-    background-color: #E8E9EC;
-    font-size: 13px;
-    color: #393A3C;
-    font-weight: bold;
+.diets div {
+  padding: 4px 8px;
+  border-radius: 50px;
+  background-color: #E8E9EC;
+  font-size: 13px;
+  color: #393A3C;
+  font-weight: bold;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .favBtn {
+    font-size: 15px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topSection {
+    flex-direction: column; /* stack image and info */
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .summary,
+  .instructions {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipePage {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .favBtn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .summary,
+  .instructions {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .ingredients {
+    padding-left: 15px;
+    font-size: 14px;
+  }
+
+  .diets {
+    justify-content: center;
+  }
 }

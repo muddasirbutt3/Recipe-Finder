@@ -1,35 +1,3 @@
-/* .home {
-  width: 100%;
-  flex: 1;
-  padding: 0 10px;
-}
-
-.cards {
-  width: 100%;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-.title {
-  text-align: center;
-  font-size: 34px;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 22px;
-  }
-} */
 .home {
   width: 100%;
   flex: 1;
@@ -61,12 +29,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
-  align-items: stretch; /* makes cards equal height rows */
+  align-items: stretch;
   margin-bottom: 40px;
   padding: 0 6px;
 }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
   .title {
     font-size: 1.6rem;
@@ -81,7 +48,7 @@
     font-size: 1.35rem;
   }
   .cards {
-    grid-template-columns: 1fr; /* single column on small phones */
+    grid-template-columns: 1fr; 
     gap: 12px;
     padding: 0;
   }

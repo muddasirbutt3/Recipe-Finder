@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./NavBar.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
-function NavBar({ favRecipe, setFavRecipe }) {
+function NavBar() {
   const navigate = useNavigate();
-  function handleClick() {
-    navigate("/");
-  }
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className={styles.navbar}>
       {/* Left - Logo */}
-      <div className={styles.logo} onClick={handleClick}>
+      <div className={styles.logo} onClick={() => navigate("/")}>
         <img src="/images/logo.jpg" alt="logo" className={styles.img} />
         <span className={styles.brand}>Recipe Finder</span>
       </div>
 
-      {/* Right - Navigation Links */}
-      <ul className={styles.navLinks}>
+      {/* Links */}
+      <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
         <li>
           <NavLink
             to="/"
             className={({ isActive }) =>
               `${styles.link} ${isActive ? styles.active : ""}`
             }
+            onClick={() => setMenuOpen(false)}
           >
             Home
           </NavLink>
@@ -33,6 +33,7 @@ function NavBar({ favRecipe, setFavRecipe }) {
             className={({ isActive }) =>
               `${styles.link} ${isActive ? styles.active : ""}`
             }
+            onClick={() => setMenuOpen(false)}
           >
             About
           </NavLink>
@@ -43,13 +44,26 @@ function NavBar({ favRecipe, setFavRecipe }) {
             className={({ isActive }) =>
               `${styles.link} ${isActive ? styles.active : ""}`
             }
+            onClick={() => setMenuOpen(false)}
           >
             Favorites
           </NavLink>
         </li>
       </ul>
+
+      {/* Hamburger */}
+      <button
+        className={`${styles.hamburger} ${menuOpen ? styles.activeHam : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   );
 }
+
 
 export default NavBar;
