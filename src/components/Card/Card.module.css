@@ -1,27 +1,161 @@
-.card {
+/* .card {
   width: 20%;
-  /* background-color: #e52b2b; */
+  min-width: 220px; 
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(128, 128, 128, 0.762);
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
 .img {
   display: block;
-  margin: 0 auto; /* centers horizontally */
+  margin: 0 auto;
   max-width: 100%;
   max-height: 400px;
   object-fit: cover;
 }
+
 .imgBox {
   width: 100%;
   height: 150px;
   overflow: hidden;
   display: flex;
-  justify-content: center; /* centers horizontally */
+  justify-content: center;
   align-items: center;
 }
+
 .title {
   padding: 10px 15px;
   font-size: 16px;
+}
+
+.title > p {
+  margin-bottom: 8px;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  font-size: 14px;
+  color: gray;
+  gap: 4px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
+} */
+.card {
+  /* no fixed width — the grid controls sizing */
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* stretch to match grid row height */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  border-color: rgba(230,126,34,0.35);
+}
+
+/* Image area */
+.imgBox {
+  width: 100%;
+  aspect-ratio: 16 / 10;       /* keeps card heights consistent */
+  background: #f3f3f3;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.05);
+}
+
+/* Text area */
+.title {
+  padding: 12px 14px 14px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title > p {
+  margin: 0;
+  color: #2b2b2b;
+  line-height: 1.35;
+  /* clamp long titles to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7em; /* keeps rows aligned when titles differ */
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #7a7a7a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .imgBox {
+    aspect-ratio: 4 / 3;
+  }
+  .title {
+    font-size: 15px;
+    padding: 12px;
+  }
+  .details {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imgBox {
+    aspect-ratio: 1 / 1; /* square images on small phones */
+  }
+  .title {
+    font-size: 14px;
+    padding: 10px 12px 12px;
+  }
 }

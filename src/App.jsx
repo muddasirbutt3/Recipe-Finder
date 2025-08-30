@@ -8,84 +8,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Recipe from "./pages/Recipe/Recipe";
 import Favorite from "./pages/Favorite/Favorite";
+import ServerError from "./components/ServerError/ServerError";
 const apiKey = import.meta.env.VITE_SPOONACULAR_KEY;
 const BaseURL = import.meta.env.VITE_SPOONACULAR_BASE_URL;
 const searchTerm = "pasta";
 const limit = 10;
 
 function App() {
-  let initialData = [
-    {
-      id: 715415,
-      title: "Red Lentil Soup with Chicken and Turnips",
-      image: "https://img.spoonacular.com/recipes/715415-312x231.jpg",
-      imageType: "jpg",
-    },
+  let initialData = JSON.parse(localStorage.getItem("initialData"));
+  // let initialData = JSON.parse(localStorage.getItem('rand'))
+  console.log(initialData);
 
-    {
-      id: 716406,
-      title: "Asparagus and Pea Soup: Real Convenience Food",
-      image: "https://img.spoonacular.com/recipes/716406-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 644387,
-      title: "Garlicky Kale",
-      image: "https://img.spoonacular.com/recipes/644387-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 715446,
-      title: "Slow Cooker Beef Stew",
-      image: "https://img.spoonacular.com/recipes/715446-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 782601,
-      title: "Red Kidney Bean Jambalaya",
-      image: "https://img.spoonacular.com/recipes/782601-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 716426,
-      title: "Cauliflower, Brown Rice, and Vegetable Fried Rice",
-      image: "https://img.spoonacular.com/recipes/716426-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 716004,
-      title:
-        "Quinoa and Chickpea Salad with Sun-Dried Tomatoes and Dried Cherries",
-      image: "https://img.spoonacular.com/recipes/716004-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 716627,
-      title: "Easy Homemade Rice and Beans",
-      image: "https://img.spoonacular.com/recipes/716627-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 664147,
-      title: "Tuscan White Bean Soup with Olive Oil and Rosemary",
-      image: "https://img.spoonacular.com/recipes/664147-312x231.jpg",
-      imageType: "jpg",
-    },
-
-    {
-      id: 640941,
-      title: "Crunchy Brussels Sprouts Side Dish",
-      image: "https://img.spoonacular.com/recipes/640941-312x231.jpg",
-      imageType: "jpg",
-    },
-  ];
   const [favRecipe, setFavRecipe] = useState(() => {
     let favorite = localStorage.getItem("favRecipe");
     return favorite ? JSON.parse(favorite) : [];
@@ -98,12 +31,15 @@ function App() {
   }, [favRecipe]);
 
   useEffect(() => {
-    // axios.get(`complexSearch?${BaseURL}number=${limit}&apiKey=${apiKey}`)
+    // axios.get(`${BaseURL}complexSearch?number=${limit}&apiKey=${apiKey}&addRecipeInformation=true`)
+    // axios.get(`https://api.spoonacular.com/recipes/random?apiKey=5d8c563377bb4ef2b19e876606f1f21a`)
     // .then((res) => {
     //   setLoading(false)
     //   setData(res.data.results)
     //   console.log(res.data.results)
+    //   localStorage.setItem('initialData',JSON.stringify(res.data.results))
     // })
+    // .catch(err => console.log(err))
     setTimeout(() => {
       setLoading(false);
       // setData(res.data.results);
@@ -112,11 +48,12 @@ function App() {
   }, []);
 
   return (
-    <>
+      <>
       <NavBar />
       <Routes>
         <Route
           path="/"
+          // element={<Home setData={setData} data={data} />}
           element={<Home setData={setData} data={data} loading={loading} />}
         />
         <Route
@@ -124,10 +61,19 @@ function App() {
           element={<Recipe favRecipe={favRecipe} setFavRecipe={setFavRecipe} />}
         />
         <Route path="/about" element={<About />} />
-        <Route path="/favorites" element={<Favorite data={data} favRecipe={favRecipe} setFavRecipe={setFavRecipe} />} />
+        <Route
+          path="/favorites"
+          element={
+            <Favorite
+              data={data}
+              favRecipe={favRecipe}
+              setFavRecipe={setFavRecipe}
+            />
+          }
+        />
       </Routes>
       <Footer />
-    </>
+      </>
   );
 }
 

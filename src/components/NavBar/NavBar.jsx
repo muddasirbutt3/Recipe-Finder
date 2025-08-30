@@ -8,29 +8,47 @@ function NavBar({ favRecipe, setFavRecipe }) {
     navigate("/");
   }
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
+      {/* Left - Logo */}
       <div className={styles.logo} onClick={handleClick}>
-        <img src="/images/logo.jpg" alt="" className={styles.img} />
-        <p>Recipe Finder</p>
+        <img src="/images/logo.jpg" alt="logo" className={styles.img} />
+        <span className={styles.brand}>Recipe Finder</span>
       </div>
-      <div className={styles.links}>
-        <NavLink
-          style={({ isActive }) => ({
-            color: isActive ? "#e67e22" : "#555",
-          })}
-          to="/"
-          className={styles.link}
-        >
-          Home
-        </NavLink>
-        <NavLink to="/about" className={styles.link}>
-          About
-        </NavLink>
-        <NavLink to="/favorites" className={styles.link}>
-          Favorites
-        </NavLink>
-      </div>
-    </div>
+
+      {/* Right - Navigation Links */}
+      <ul className={styles.navLinks}>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
+            }
+          >
+            Favorites
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
   );
 }
 

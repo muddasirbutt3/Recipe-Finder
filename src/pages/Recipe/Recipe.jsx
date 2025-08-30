@@ -6,24 +6,24 @@ const apiKey = import.meta.env.VITE_SPOONACULAR_KEY;
 const BaseURL = import.meta.env.VITE_SPOONACULAR_BASE_URL;
 function Recipe({ setFavRecipe, favRecipe }) {
   const { id } = useParams();
-  //   //   let [data,setData] = useState('')
-  //   //   let [loading,setLoading] = useState(true)
-  //   let data = JSON.parse(localStorage.getItem("recipe"));
-  //   console.log(data);
-  //   useEffect(() => {
-  //   //     axios
-  //   //       .get(
-  //   //         `https://api.spoonacular.com/recipes/${id}/information?apiKey=5d8c563377bb4ef2b19e876606f1f21a`
-  //   //       )
-  //   //       .then((res) => {
-  //   //         // setLoading(false)
-  //   //         // setData(res.data.results)
-  //   //         console.log(res.data);
-  //   //         setData(res.data)
-  //   //         setLoading(false)
-  //   //         // localStorage.setItem("recipe", JSON.stringify(res.data));
-  //   //       });
-  //   //   }, []);
+  // let [data, setData] = useState("");
+  // let [loading, setLoading] = useState(true);
+  let data = JSON.parse(localStorage.getItem("recipe"));
+  console.log(data);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${BaseURL}${id}/information?apiKey=5d8c563377bb4ef2b19e876606f1f21a`
+  //     )
+  //     .then((res) => {
+  //       // setLoading(false)
+  //       // setData(res.data.results)
+  //       console.log(res.data);
+  //       setData(res.data);
+  //       // setLoading(false);
+  //       // localStorage.setItem("recipe", JSON.stringify(res.data));
+  //     });
+  // }, []);
   function addFavorite() {
     const isInclude = favRecipe.includes(id);
     if (isInclude) {
@@ -32,8 +32,8 @@ function Recipe({ setFavRecipe, favRecipe }) {
       setFavRecipe((prev) => [...prev, id]);
     }
   }
-  const data = JSON.parse(localStorage.getItem("recipe"));
-  console.log(data);
+  // const data = JSON.parse(localStorage.getItem("recipe"));
+  // console.log(data);
 
   if (!data) return <p>No recipe found</p>;
 

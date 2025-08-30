@@ -1,0 +1,34 @@
+.errorWrapper {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.errorBox {
+  background-color: #fff3f3;
+  border: 1px solid #ffcccc;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.errorBox h2 {
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.errorBox p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.errorBox small {
+  font-size: 13px;
+  color: gray;
+}
