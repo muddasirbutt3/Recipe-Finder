@@ -1,12 +1,52 @@
-# React + Vite
+# 🍳 Recipe Finder  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive **React app** to search, explore, and save recipes. Users can look up recipes by name, add/remove favorites, and enjoy a clean, mobile-friendly UI with error and empty-state handling.  
+---
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [Recipe Finder App](https://recipe-finder-react-api.vercel.app/)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔍 Search recipes by name  
+- ❤️ Add & remove favorites (saved in localStorage)  
+- 📱 Fully responsive design with mobile navigation  
+- ⚠️ Error & empty state cards (server error, no results, no favorites)  
+- 🚀 Deployed on **Vercel** with environment variables  
+
+---
+
+## 🛠️ Tech Stack  
+
+- **React (Vite)**  
+- **React Router**  
+- **Context API** (error handling)  
+- **CSS Modules** (scoped + responsive)  
+- **LocalStorage** (favorites persistence)  
+- **Vercel** (deployment)  
+
+---
+
+## 🚀 Getting Started  
+
+### 1️⃣ Clone the repository  
+```bash
+git clone https://github.com/muddasirbutt3/Recipe-Finder.git
+cd recipe-finder  
+```
+### 2️⃣ Install dependencies
+```bash
+npm install
+```
+### 3️⃣ Add Environment Variables
+
+Create a .env file in the root directory and add your API key:
+```bash
+VITE_SPOONACULAR_KEY=your_api_key_here
+VITE_SPOONACULAR_BASE_URL=your_api_url_here
+```
+### 4️⃣ Run locally
+```bash
+npm run dev
+```
