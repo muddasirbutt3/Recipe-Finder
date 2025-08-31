@@ -5,6 +5,7 @@ import style from "./Home.module.css";
 import Loader from "../../components/Loader/Loader";
 import { DataContext } from "../../context/DataContext";
 import { ErrorContext } from "../../context/ErrorContext";
+import NoResults from "../../components/NoResults/NoResults";
 
 function Home({ loading }) {
   const { data, setData } = useContext(DataContext);
@@ -18,6 +19,7 @@ function Home({ loading }) {
       ) : (
         <>
           <h3 className={style.title}>Latest Recipes</h3>
+          {data.length === 0 && <NoResults />}
           <div className={style.cards}>
             {data.map((recipe) => (
               <Card info={recipe} key={recipe.id} />

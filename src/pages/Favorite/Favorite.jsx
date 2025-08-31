@@ -17,7 +17,7 @@ function Favorite({ favRecipe }) {
     axios
       .get(`${BaseURL}informationBulk?ids=${ids}&apiKey=${apiKey}`)
       .then((res) => {
-        setData(res.data.results);
+        setData(res.data);
         setLoading(false);
       })
     .catch(err => {
