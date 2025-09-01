@@ -7,6 +7,13 @@ A responsive **React app** to search, explore, and save recipes. Users can look 
 
 ---
 
+## 📸 Preview
+
+![App Screenshot](./public/images/image.png)  
+*(If you see a server error, it might be due to the API request limit — just try again later.)*
+
+---
+
 ## ✨ Features  
 
 - 🔍 Search recipes by name  
